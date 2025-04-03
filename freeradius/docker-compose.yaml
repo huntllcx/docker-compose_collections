@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  freeradius:
+    image: freeradius/freeradius-server
+    container_name: freeradius
+    volumes:
+      - ./raddb:/etc/freeradius
+    ports:
+      - "1812:1812/udp"
+      - "1813:1813/udp"
+    command: radiusd -f -X
+    restart: unless-stopped
